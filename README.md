@@ -1,9 +1,9 @@
-# Slack Bot
+# Slack Bot README
 
-## 설정 (Korean)
+## 설치 및 설정 (Korean)
 
 ### 사전 준비
-- Python 3.x 설치 필요
+- Python 3.x 필요
 
 ### 설치 단계
 1. 가상환경 생성
@@ -15,45 +15,62 @@
    - Windows: `myenv\Scripts\activate`
    - Mac/Linux: `source myenv/bin/activate`
 
-3. 필요한 패키지 설치
+3. 패키지 설치
    ```bash
    pip install -r requirements.txt
    ```
 
 4. 환경변수 설정
-   - `SLACK_BOT_TOKEN`: Slack에서 발급받은 Bot Token
-   - `SLACK_APP_TOKEN`: Slack에서 발급받은 App Token
+   - `SLACK_BOT_TOKEN`: Slack Bot Token
+   - `SLACK_APP_TOKEN`: Slack App Token
 
-5. Slack 앱 권한 설정
-   - [Slack API 대시보드](https://api.slack.com/apps)에서 앱 선택
-   - OAuth & Permissions 메뉴에서 Bot Token Scopes에 다음 권한 추가:
-     * `channels:history`
-     * `chat:write`
-     * `commands`
-     * `im:history`
-     * `users:read`
+### Slack 앱 구성
 
-6. 봇 실행
+#### [OAuth & Permissions]
+- **접근 방법**:
+  1. [Slack API 대시보드](https://api.slack.com/apps)로 이동
+  2. 개발 중인 앱 선택
+  3. "OAuth & Permissions" 메뉴 선택
+
+- **필요 권한 설정**:
+  - `channels:history`: 채널 메시지 히스토리 읽기
+  - `chat:write`: 메시지 전송
+  - `commands`: 슬래시 명령어 처리
+  - `im:history`: 다이렉트 메시지 히스토리 읽기
+  - `users:read`: 사용자 정보 접근
+
+#### [Slash Commands]
+- **접근 방법**:
+  1. [Slack API 대시보드](https://api.slack.com/apps)로 이동
+  2. 개발 중인 앱 선택
+  3. "Slash Commands" 메뉴 선택
+
+- **슬래시 명령어 구성**:
+  - 명령어: `/문장제출`
+  - Request URL 설정
+  - 설명 및 사용 힌트 추가
+
+5. 봇 실행
    ```bash
    python main.py
    ```
 
 ### 사용법
-- "ㅎㅇ" 메시지 전송 시 인사말 받기
-- `/문장제출` 명령어로 질문 제출
-- 제출된 질문은 `data/questions.csv`에 저장됨
+- "ㅎㅇ"로 인사말 받기
+- `/문장제출`로 질문 제출
+- 질문은 `data/questions.csv`에 저장
 
 ### 파일 구조
 - `main.py`: 봇 메인 코드
-- `requirements.txt`: 파이썬 패키지 목록
-- `data/`: 제출된 질문 저장 디렉토리
+- `requirements.txt`: 패키지 목록
+- `data/`: 질문 저장 디렉토리
 
 ---
 
-## Setup (English)
+## Installation & Setup (English)
 
 ### Prerequisites
-- Python 3.x installation required
+- Python 3.x required
 
 ### Installation Steps
 1. Create virtual environment
@@ -65,36 +82,52 @@
    - Windows: `myenv\Scripts\activate`
    - Mac/Linux: `source myenv/bin/activate`
 
-3. Install required packages
+3. Install packages
    ```bash
    pip install -r requirements.txt
    ```
 
 4. Set environment variables
-   - `SLACK_BOT_TOKEN`: Bot Token from Slack
-   - `SLACK_APP_TOKEN`: App Token from Slack
+   - `SLACK_BOT_TOKEN`: Slack Bot Token
+   - `SLACK_APP_TOKEN`: Slack App Token
 
-5. Configure Slack app permissions
-   - Go to [Slack API Dashboard](https://api.slack.com/apps)
-   - Select your app
-   - In OAuth & Permissions, add the following scopes to Bot Token Scopes:
-     * `channels:history`
-     * `chat:write`
-     * `commands`
-     * `im:history`
-     * `users:read`
+### Slack App Configuration
 
-6. Run the bot
+#### [OAuth & Permissions]
+- **How to Access**:
+  1. Go to [Slack API Dashboard](https://api.slack.com/apps)
+  2. Select app under development
+  3. Choose "OAuth & Permissions" menu
+
+- **Required Permissions**:
+  - `channels:history`: Read channel message history
+  - `chat:write`: Send messages
+  - `commands`: Handle slash commands
+  - `im:history`: Read direct message history
+  - `users:read`: Access user information
+
+#### [Slash Commands]
+- **How to Access**:
+  1. Go to [Slack API Dashboard](https://api.slack.com/apps)
+  2. Select app under development
+  3. Choose "Slash Commands" menu
+
+- **Slash Command Configuration**:
+  - Command: `/문장제출`
+  - Set Request URL
+  - Add description and usage hint
+
+5. Run bot
    ```bash
    python main.py
    ```
 
 ### Usage
-- Send "ㅎㅇ" to receive a greeting
-- Use `/문장제출` command to submit a question
-- Submitted questions are saved in `data/questions.csv`
+- Receive greeting with "ㅎㅇ"
+- Submit questions with `/문장제출`
+- Questions saved in `data/questions.csv`
 
 ### File Structure
-- `main.py`: Main bot code
-- `requirements.txt`: List of Python packages
-- `data/`: Directory to store submitted questions
+- `main.py`: Bot main code
+- `requirements.txt`: Package list
+- `data/`: Question storage directory
