@@ -183,6 +183,64 @@ def handle_submission_history_command(ack, body, client: WebClient):
     os.remove(temp_file_path)
 
 
+@app.command("/관리자")
+def handle_admin_command(ack, body, client: WebClient):
+    ack()
+
+    # 관리자인지 확인 후 아니라면 메시지 전송 후 종료
+    user_id = body["user_id"]
+    if user_id != "U089ZS8NVK2":
+        client.chat_postEphemeral(
+            channel=body["channel_id"],
+            user=user_id,
+            text="관리자만 사용 가능한 명령어입니다.",
+        )
+        return None
+    # 관리자용 버튼 전송(전체 제출내역을 반환)
+    client.chat_postEphemeral(
+        channel=body["channel_id"],
+        user=user_id,
+        text="관리자 메뉴를 선택해주세요.",
+        blocks=[
+            {
+                "type": "actions",
+                "elements": [
+                    {
+                        "type": "button",
+                        "text": {
+                            "type": "plain_text",
+                            "text": "전체 제출내역 조회",
+                            "emoji": True,
+                        },
+                        "value": "admin_value_1",
+                        "action_id": "fetch_all_submissions",
+                    }
+                ],
+            }
+        ],
+    )
+
+
+@app.action("fetch_all_submissions")
+def handle_some_action(ack, body, client: WebClient):
+    ack()
+    # 관리자의 DM 채녈 ID 가져오기
+    response = client.conversations_open(users=body["user"]["id"])
+    dm_channel_id = response["channel"]["id"]
+
+    # 전체 제출내역을 불러와서 전송
+    file_path = "data/questions.csv"
+    if not os.path.exists(file_path):
+        client.chat_postMessage(channel=dm_channel_id, text="제출내역이 없습니다.")
+        return None
+
+    client.files_upload_v2(
+        channel=dm_channel_id,
+        file=file_path,
+        initial_comment="전체 제출내역 입니다!",
+    )
+
+
 # Start your app
 if __name__ == "__main__":
     handler = SocketModeHandler(app, os.environ["SLACK_APP_TOKEN"])
