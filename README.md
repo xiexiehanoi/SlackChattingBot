@@ -27,6 +27,7 @@
 ### Slack 앱 구성
 
 #### [OAuth & Permissions]
+
 - **접근 방법**:
   1. [Slack API 대시보드](https://api.slack.com/apps)로 이동
   2. 개발 중인 앱 선택
@@ -34,9 +35,15 @@
 
 - **필요 권한 설정**:
   - `channels:history`: 채널 메시지 히스토리 읽기
+  - `channels:write.invites`: 퍼블릭 채널에 멤버 초대
+  - `channels:write.topic`: 퍼블릭 채널 설명 변경
   - `chat:write`: 메시지 전송
   - `commands`: 슬래시 명령어 처리
+  - `files:write`: 파일 업로드, 편집, 삭제
+  - `groups:write`: 개인 채널 관리 및 생성
   - `im:history`: 다이렉트 메시지 히스토리 읽기
+  - `im:write`: 다이렉트 메시지 시작
+  - `mpim:write`: 그룹 다이렉트 메시지 시작
   - `users:read`: 사용자 정보 접근
 
 #### [Slash Commands]
@@ -46,9 +53,7 @@
   3. "Slash Commands" 메뉴 선택
 
 - **슬래시 명령어 구성**:
-  - 명령어: `/문장제출`
-  - Request URL 설정
-  - 설명 및 사용 힌트 추가
+  - 명령어: `/문장제출`, `/제출내역`
 
 5. 봇 실행
    ```bash
@@ -94,16 +99,23 @@
 ### Slack App Configuration
 
 #### [OAuth & Permissions]
+
 - **How to Access**:
   1. Go to [Slack API Dashboard](https://api.slack.com/apps)
-  2. Select app under development
-  3. Choose "OAuth & Permissions" menu
+  2. Select the app under development
+  3. Choose the "OAuth & Permissions" menu
 
 - **Required Permissions**:
   - `channels:history`: Read channel message history
+  - `channels:write.invites`: Invite members to public channels
+  - `channels:write.topic`: Set the description of public channels
   - `chat:write`: Send messages
   - `commands`: Handle slash commands
-  - `im:history`: Read direct message history
+  - `files:write`: Upload, edit, and delete files
+  - `groups:write`: Manage private channels and create new ones
+  - `im:history`: View direct message history
+  - `im:write`: Start direct messages with people
+  - `mpim:write`: Start group direct messages with people
   - `users:read`: Access user information
 
 #### [Slash Commands]
