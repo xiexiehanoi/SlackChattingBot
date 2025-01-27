@@ -4,6 +4,9 @@
 .env/
 .venv/
 
+# Ignore data folder
+data/
+
 # Environment Variables
 .env
 *.env
