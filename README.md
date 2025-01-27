@@ -53,7 +53,11 @@
   3. "Slash Commands" 메뉴 선택
 
 - **슬래시 명령어 구성**:
-  - 명령어: `/문장제출`, `/제출내역`
+  - 명령어: `/문장제출`, `/제출내역`, `/관리자`
+
+#### [Block Kit Builder]
+- 슬랙 메시지와 UI를 디자인하려면 [Block Kit Builder](https://app.slack.com/block-kit-builder)를 사용하세요.
+- UI 요소를 테스트하고 JSON 페이로드를 생성할 수 있습니다.
 
 5. 봇 실행
    ```bash
@@ -63,6 +67,8 @@
 ### 사용법
 - "ㅎㅇ"로 인사말 받기
 - `/문장제출`로 질문 제출
+- `/제출내역`으로 본인의 제출내역 확인
+- `/관리자`로 전체 제출내역 확인 (관리자 전용)
 - 질문은 `data/questions.csv`에 저장
 
 ### 파일 구조
@@ -125,9 +131,11 @@
   3. Choose "Slash Commands" menu
 
 - **Slash Command Configuration**:
-  - Command: `/문장제출`
-  - Set Request URL
-  - Add description and usage hint
+  - Command: `/문장제출`, `/제출내역`, `/관리자`
+
+#### [Block Kit Builder]
+- Use [Block Kit Builder](https://app.slack.com/block-kit-builder) to design Slack messages and UI.
+- Test UI elements and generate JSON payloads.
 
 5. Run bot
    ```bash
@@ -137,9 +145,15 @@
 ### Usage
 - Receive greeting with "ㅎㅇ"
 - Submit questions with `/문장제출`
-- Questions saved in `data/questions.csv`
+- View your submissions with `/제출내역`
+- View all submissions with `/관리자` (admin-only)
+- Questions are saved in `data/questions.csv`
 
 ### File Structure
 - `main.py`: Bot main code
 - `requirements.txt`: Package list
 - `data/`: Question storage directory
+
+---
+
+이렇게 업데이트하면 `/관리자` 명령어와 Block Kit Builder 관련 내용이 명확히 추가됩니다.
